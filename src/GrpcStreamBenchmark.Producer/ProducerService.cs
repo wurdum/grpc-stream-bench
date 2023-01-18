@@ -1,11 +1,17 @@
 using Grpc.Core;
+using GrpcStreamBenchmark.Core;
 
 namespace GrpcStreamBenchmark.Producer;
 
 public class ProducerService : RecordProducer.RecordProducerBase
 {
-    public override Task GetRecords(RecordStreamRequest request, IServerStreamWriter<Record> responseStream, ServerCallContext context)
+    public override async Task GetRecords(RecordStreamRequest request, IServerStreamWriter<Record> responseStream, ServerCallContext context)
     {
-        return base.GetRecords(request, responseStream, context);
+        while (!context.CancellationToken.IsCancellationRequested)
+        {
+            await responseStream.WriteAsync(Record.New());
+
+            await Task.Delay(1000, default);
+        }
     }
 }

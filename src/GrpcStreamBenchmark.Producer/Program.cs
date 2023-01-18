@@ -13,6 +13,8 @@ builder.WebHost.ConfigureKestrel(options =>
 });
 
 builder.Services.AddGrpc();
+builder.Services.AddGrpcReflection();
+
 builder.Services.AddOpenTelemetry()
     .WithMetrics(b =>
     {
@@ -24,7 +26,9 @@ builder.Services.AddOpenTelemetry()
 
 var app = builder.Build();
 
+app.MapGrpcReflectionService();
 app.MapGrpcService<ProducerService>();
+
 app.MapGet("/", () => Environment.ProcessId);
 
 app.Run();

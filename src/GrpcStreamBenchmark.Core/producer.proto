@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option csharp_namespace = "GrpcStreamBenchmark.Producer";
+option csharp_namespace = "GrpcStreamBenchmark.Core";
 
 message Record {
   string id = 1;
@@ -26,8 +26,8 @@ message Record {
   int64 ts1 = 19;
   int64 ts2 = 24;
   int64 ts3 = 25;
-  int64 ts5 = 26;
-  int64 ts6 = 27;
+  int64 ts4 = 26;
+  int64 ts5 = 27;
   int64 timestamp = 28;
 }
 
