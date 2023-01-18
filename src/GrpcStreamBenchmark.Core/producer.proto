@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcStreamBenchmark.Producer";
+
+message Record {
+  string id = 1;
+  string audit_id = 2;
+  bool is_active = 3;
+  int32 status1 = 4;
+  int32 status2 = 5;
+  string symbol = 6;
+  int32 symbol_id = 7;
+
+  double value1 = 8;
+  double value2 = 9;
+  double value3 = 10;
+  double value4 = 11;
+  double value5 = 12;
+  double value6 = 13;
+  double value7 = 14;
+  double value8 = 15;
+  double value9 = 16;
+  double value10 = 17;
+  double value11 = 18;
+
+  int64 ts1 = 19;
+  int64 ts2 = 24;
+  int64 ts3 = 25;
+  int64 ts5 = 26;
+  int64 ts6 = 27;
+  int64 timestamp = 28;
+}
+
+message RecordStreamRequest {
+}
+
+service RecordProducer {
+  rpc GetRecords (RecordStreamRequest) returns (stream Record);
+}
