@@ -132,6 +132,7 @@ csharp_preserve_single_line_statements = true
 csharp_preserve_single_line_blocks = true
 
 dotnet_diagnostic.CA1014.severity = none # Do not require assemblies to be CLS compliant.
+dotnet_diagnostic.CA1031.severity = none # Allow catching generic exception.
 dotnet_diagnostic.CA1040.severity = none # Allow empty interfaces.
 dotnet_diagnostic.CA1050.severity = none # Do not require namespace for all types.
 dotnet_diagnostic.CA1062.severity = none # Do not require validation of arguments of public methods.

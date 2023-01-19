@@ -3,7 +3,7 @@
     <TargetFramework>net7.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Protobuf Include="producer.proto" GrpcServices="Server" />
+    <Protobuf Include="producer.proto" GrpcServices="Server,Client" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Grpc.AspNetCore" Version="2.51.0" />

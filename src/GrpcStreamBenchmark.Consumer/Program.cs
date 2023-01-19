@@ -1,4 +1,5 @@
 using GrpcStreamBenchmark.Consumer;
+using GrpcStreamBenchmark.Core;
 using OpenTelemetry;
 using OpenTelemetry.Metrics;
 
@@ -15,6 +16,15 @@ builder.Services.AddOpenTelemetry()
             .AddAspNetCoreInstrumentation()
             .AddMeter(ServiceMetrics.Namespace);
     });
+
+builder.Services.AddGrpcClient<RecordProducer.RecordProducerClient>(o =>
+{
+    o.Address = new(builder.Configuration.GetValue<string>("ProducerUrl")!);
+    o.ChannelOptionsActions.Add(ch => ch.HttpHandler = new HttpClientHandler
+    {
+        ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+    });
+});
 
 var app = builder.Build();
 
