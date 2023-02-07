@@ -137,6 +137,7 @@ dotnet_diagnostic.CA1040.severity = none # Allow empty interfaces.
 dotnet_diagnostic.CA1050.severity = none # Do not require namespace for all types.
 dotnet_diagnostic.CA1062.severity = none # Do not require validation of arguments of public methods.
 dotnet_diagnostic.CA1063.severity = none # Do not require full Dispose pattern implementation.
+dotnet_diagnostic.CA1303.severity = none # Allow non-localizable strings.
 dotnet_diagnostic.CA1508.severity = none # 'expr' is always 'bool'. Remove or refactor the condition(s) to avoid dead code. Many false positives due to bugs in the analyzer.
 dotnet_diagnostic.CA1711.severity = none # Disable rule 'Identifiers should not have incorrect suffix' to have 'Collection' suffix.
 dotnet_diagnostic.CA1716.severity = none # Using reserved keywords as name of type.

@@ -28,6 +28,7 @@ builder.Services.AddGrpcClient<RecordProducer.RecordProducerClient>(o =>
 
 var app = builder.Build();
 
+app.UseOpenTelemetryPrometheusScrapingEndpoint();
 app.MapGet("/", () => Environment.ProcessId);
 
 app.Run();

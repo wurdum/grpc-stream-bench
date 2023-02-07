@@ -1,1 +1,12 @@
 ---
+docker_containers:
+- name: consumer
+  image: "wurdum/grpc-stream-bench-consumer"
+  tag: "{{ image_tag }}"
+  published_ports:
+  - "80:80"
+  - "443:443"
+  env:
+    ASPNETCORE_ENVIRONMENT: "Production"
+    ASPNETCORE_URLS: "http://+:80;https://+:443"
+    ProducerUrl: "https://producer.grpcstreambench.domain:443"

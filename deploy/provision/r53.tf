@@ -25,3 +25,11 @@ resource "aws_route53_record" "producer" {
     aws_instance.producer.private_ip
   ]
 }
+
+output "consumer_r53_dns_name" {
+  value = aws_route53_record.consumer.name
+}
+
+output "producer_r53_dns_name" {
+  value = aws_route53_record.producer.name
+}

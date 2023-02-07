@@ -1,18 +1,9 @@
 ---
 - name: "AWS - Run application"
-  hosts: "{{ app_group }}"
+  hosts: "all"
   become: yes
   gather_facts: true
-  pre_tasks:
-    - name: Creates directory for app
-      file:
-        path: "/app"
-        state: directory
-
-    - name: Unarchive app
-      unarchive:
-        src: "{{ app_archive }}"
-        dest: "/app/"
-        mode: 0744
-  # roles:
-  #   - { role: roles/dotnet }
+  roles:
+  - { role: roles/docker, tags: docker}
+  - { role: roles/docker-auth, tags: docker }
+  - { role: roles/docker-containers, tags: containers }
