@@ -1,0 +1,46 @@
+---
+docker_volumes:
+- name: prometheus
+
+docker_container_configs:
+- name: prometheus.yml
+  content: |
+    global:
+      scrape_interval: 15s
+      evaluation_interval: 15s
+
+    scrape_configs:
+      - job_name: consumer
+        scrape_interval: 10s
+        scrape_timeout: 5s
+        honor_labels: true
+        metrics_path: /metrics
+        static_configs:
+        - targets: ['consumer.grpcstreambench.domain:80']
+          labels:
+            role: 'consumer'
+      - job_name: producer
+        scrape_interval: 10s
+        scrape_timeout: 5s
+        honor_labels: true
+        metrics_path: /metrics
+        static_configs:
+        - targets: ['producer.grpcstreambench.domain:80']
+          labels:
+            role: 'producer'
+
+        relabel_configs:
+          - source_labels: [__address__]
+            target_label: __param_target
+          - source_labels: [__param_target]
+            target_label: instance
+
+docker_containers:
+- name: prom
+  image: "quay.io/prometheus/prometheus"
+  tag: "v2.42.0"
+  published_ports:
+  - "80:9090"
+  volumes:
+  - "prometheus:/prometheus"
+  - "{{ docker_configs_path }}/prometheus.yml:/etc/prometheus/prometheus.yml:ro"

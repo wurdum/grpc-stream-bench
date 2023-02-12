@@ -10,7 +10,7 @@ variable "domain_name" {
 
 variable "ingressrules" {
   type    = list(number)
-  default = [22, 5001, 5002, 7001, 7002]
+  default = [22, 80, 443]
 }
 
 variable "ec2_instance_type" {
