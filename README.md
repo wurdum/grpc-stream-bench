@@ -33,3 +33,5 @@ TF_VAR_admin_static_ip=""
 TF_VAR_ec2_ssh_key_name=""
 TF_VAR_ec2_bastion_eip_id=""
 ```
+
+To destroy provisioned infrastructure run `drone exec --secret-file ~/.drone/secrets.conf --env-file ~/.drone/env.conf --trusted --pipeline destroy`
