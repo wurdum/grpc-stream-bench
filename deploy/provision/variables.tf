@@ -5,17 +5,12 @@ variable "project_name" {
 
 variable "domain_name" {
   type    = string
-  default = "grpcstreambench.domain"
+  default = "app.domain"
 }
 
 variable "ingressrules" {
   type    = list(number)
   default = [22, 80, 443]
-}
-
-variable "ec2_instance_type" {
-  type    = string
-  default = "t3.medium"
 }
 
 variable "ec2_ami" {

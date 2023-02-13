@@ -34,12 +34,13 @@ resource "aws_instance" "ec2_b" {
   tags = {
     project = var.project_name
     role    = "bastion"
+    Name    = "bastion"
   }
 }
 
 resource "aws_instance" "consumer" {
   ami           = data.aws_ami.ami.id
-  instance_type = var.ec2_instance_type
+  instance_type = "t3.large"
   key_name      = var.ec2_ssh_key_name
 
   subnet_id                   = aws_subnet.subnet.id
@@ -54,12 +55,13 @@ resource "aws_instance" "consumer" {
   tags = {
     project = var.project_name
     role    = "dotnet:consumer"
+    Name    = "consumer"
   }
 }
 
 resource "aws_instance" "producer" {
   ami           = data.aws_ami.ami.id
-  instance_type = var.ec2_instance_type
+  instance_type = "t3.large"
   key_name      = var.ec2_ssh_key_name
 
   subnet_id                   = aws_subnet.subnet.id
@@ -74,12 +76,13 @@ resource "aws_instance" "producer" {
   tags = {
     project = var.project_name
     role    = "dotnet:producer"
+    Name    = "producer"
   }
 }
 
 resource "aws_instance" "monitor" {
   ami           = data.aws_ami.ami.id
-  instance_type = var.ec2_instance_type
+  instance_type = "t3.medium"
   key_name      = var.ec2_ssh_key_name
 
   subnet_id                   = aws_subnet.subnet.id
@@ -94,6 +97,7 @@ resource "aws_instance" "monitor" {
   tags = {
     project = var.project_name
     role    = "dotnet:monitor"
+    Name    = "monitor"
   }
 }
 

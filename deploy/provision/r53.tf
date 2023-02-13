@@ -26,10 +26,24 @@ resource "aws_route53_record" "producer" {
   ]
 }
 
+resource "aws_route53_record" "monitor" {
+  zone_id = aws_route53_zone.local.zone_id
+  name    = "monitor.${var.domain_name}"
+  type    = "A"
+  ttl     = "300"
+  records = [
+    aws_instance.monitor.private_ip
+  ]
+}
+
 output "consumer_r53_dns_name" {
   value = aws_route53_record.consumer.name
 }
 
 output "producer_r53_dns_name" {
   value = aws_route53_record.producer.name
+}
+
+output "monitor_r53_dns_name" {
+  value = aws_route53_record.monitor.name
 }

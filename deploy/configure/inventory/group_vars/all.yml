@@ -3,7 +3,7 @@ ansible_connection: ssh
 ansible_user: ubuntu
 ansible_become: true
 
-docker_configs_path: /etc/docker/configs
+docker_configs_path: "/opt/docker"
 
 docker_auth:
 - username: "{{ docker_user }}"

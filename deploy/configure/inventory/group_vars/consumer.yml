@@ -9,4 +9,4 @@ docker_containers:
   env:
     ASPNETCORE_ENVIRONMENT: "Production"
     ASPNETCORE_URLS: "http://+:80;https://+:443"
-    ProducerUrl: "https://producer.grpcstreambench.domain:443"
+    ProducerUrl: "https://producer.app.domain:443"
