@@ -108,9 +108,9 @@
             "uid": "P1809F7CD0C75ACF3"
           },
           "editorMode": "code",
-          "expr": "histogram_quantile($percentile, sum(rate(consumer_received_message_latency_ms_bucket{role=~\"$role\"}[$__rate_interval])) by (le))",
+          "expr": "histogram_quantile($percentile, sum(rate(consumer_received_message_latency_ms_bucket{role=~\"$role\"}[$__rate_interval])) by (le, role))",
           "interval": "$frequency",
-          "legendFormat": "consumer",
+          "legendFormat": "{{role}}",
           "range": true,
           "refId": "A"
         },
@@ -120,10 +120,10 @@
             "uid": "P1809F7CD0C75ACF3"
           },
           "editorMode": "code",
-          "expr": "histogram_quantile($percentile, sum(rate(producer_message_sending_latency_ms_bucket{role=~\"$role\"}[$__rate_interval])) by (le))",
+          "expr": "histogram_quantile($percentile, sum(rate(producer_message_sending_latency_ms_bucket{role=~\"$role\"}[$__rate_interval])) by (le, role))",
           "hide": false,
           "interval": "$frequency",
-          "legendFormat": "producer",
+          "legendFormat": "{{role}}",
           "range": true,
           "refId": "B"
         }
@@ -214,9 +214,9 @@
             "uid": "P1809F7CD0C75ACF3"
           },
           "editorMode": "code",
-          "expr": "sum by(role)(rate(consumer_received_messages_total[$__rate_interval]))",
+          "expr": "sum by(role)(rate(consumer_received_messages_total{role=~\"$role\"}[$__rate_interval]))",
           "interval": "$frequency",
-          "legendFormat": "consumer",
+          "legendFormat": "{{role}}",
           "range": true,
           "refId": "A"
         },
@@ -226,10 +226,10 @@
             "uid": "P1809F7CD0C75ACF3"
           },
           "editorMode": "code",
-          "expr": "sum by(role)(rate(producer_messages_sent_total[$__rate_interval]))",
+          "expr": "sum by(role)(rate(producer_messages_sent_total{role=~\"$role\"}[$__rate_interval]))",
           "hide": false,
           "interval": "$frequency",
-          "legendFormat": "producer",
+          "legendFormat": "{{role}}",
           "range": true,
           "refId": "B"
         }
@@ -778,7 +778,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -872,7 +873,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -910,7 +912,7 @@
         {
           "datasource": "prometheus",
           "editorMode": "code",
-          "expr": "sum by (role)(increase(process_runtime_dotnet_thread_pool_completed_items_count{role=~\"$role\"}[$__interval]))",
+          "expr": "sum by (role)(rate(process_runtime_dotnet_thread_pool_completed_items_count{role=~\"$role\"}[$__rate_interval]))",
           "interval": "$frequency",
           "legendFormat": "{{role}}",
           "range": true,
@@ -966,7 +968,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1002,7 +1005,7 @@
         {
           "datasource": "prometheus",
           "editorMode": "code",
-          "expr": "sum by(role)(rate(process_runtime_dotnet_jit_compilation_time_ns[$__rate_interval]))",
+          "expr": "sum by(role)(rate(process_runtime_dotnet_jit_compilation_time_ns{role=~\"$role\"}[$__rate_interval]))",
           "interval": "$frequency",
           "legendFormat": "{{role}}",
           "range": true,
@@ -1058,7 +1061,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1094,7 +1098,7 @@
         {
           "datasource": "prometheus",
           "editorMode": "code",
-          "expr": "sum by(role)(rate(process_runtime_dotnet_jit_methods_compiled_count[$__rate_interval]))",
+          "expr": "sum by(role)(rate(process_runtime_dotnet_jit_methods_compiled_count{role=~\"$role\"}[$__rate_interval]))",
           "interval": "$frequency",
           "legendFormat": "{{role}}",
           "range": true,
@@ -1115,10 +1119,12 @@
         "current": {
           "selected": true,
           "text": [
-            "All"
+            "consumer0",
+            "producer"
           ],
           "value": [
-            "$__all"
+            "consumer0",
+            "producer"
           ]
         },
         "datasource": {
@@ -1136,7 +1142,7 @@
           "query": "label_values(up, role)",
           "refId": "StandardVariableQuery"
         },
-        "refresh": 1,
+        "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
@@ -1144,7 +1150,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "0.99",
           "value": "0.99"
         },
@@ -1198,7 +1204,7 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {},

@@ -7,12 +7,13 @@ resource "aws_route53_zone" "local" {
 }
 
 resource "aws_route53_record" "consumer" {
+  count   = var.consumer_count
   zone_id = aws_route53_zone.local.zone_id
-  name    = "consumer.${var.domain_name}"
+  name    = "consumer${count.index}.${var.domain_name}"
   type    = "A"
   ttl     = "300"
   records = [
-    aws_instance.consumer.private_ip
+    aws_instance.consumer[count.index].private_ip
   ]
 }
 
@@ -37,7 +38,7 @@ resource "aws_route53_record" "monitor" {
 }
 
 output "consumer_r53_dns_name" {
-  value = aws_route53_record.consumer.name
+  value = aws_route53_record.consumer[*].name
 }
 
 output "producer_r53_dns_name" {

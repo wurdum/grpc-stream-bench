@@ -39,8 +39,9 @@ resource "aws_instance" "ec2_b" {
 }
 
 resource "aws_instance" "consumer" {
+  count         = var.consumer_count
   ami           = data.aws_ami.ami.id
-  instance_type = "t3.large"
+  instance_type = "t3.xlarge"
   key_name      = var.ec2_ssh_key_name
 
   subnet_id                   = aws_subnet.subnet.id
@@ -55,13 +56,13 @@ resource "aws_instance" "consumer" {
   tags = {
     project = var.project_name
     role    = "dotnet:consumer"
-    Name    = "consumer"
+    Name    = "consumer${count.index}"
   }
 }
 
 resource "aws_instance" "producer" {
   ami           = data.aws_ami.ami.id
-  instance_type = "t3.large"
+  instance_type = "t3.xlarge"
   key_name      = var.ec2_ssh_key_name
 
   subnet_id                   = aws_subnet.subnet.id
@@ -106,7 +107,7 @@ output "bastion_public_dns_name" {
 }
 
 output "consumer_public_dns_name" {
-  value = aws_instance.consumer.public_dns
+  value = aws_instance.consumer[*].public_dns
 }
 
 output "producer_public_dns_name" {

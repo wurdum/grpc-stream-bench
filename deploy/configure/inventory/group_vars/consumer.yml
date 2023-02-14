@@ -1,12 +1,38 @@
 ---
 docker_containers:
-- name: consumer
+- name: consumer0
   image: "wurdum/grpc-stream-bench-consumer"
   tag: "{{ image_tag }}"
   published_ports:
   - "80:80"
-  - "443:443"
   env:
     ASPNETCORE_ENVIRONMENT: "Production"
-    ASPNETCORE_URLS: "http://+:80;https://+:443"
+    ASPNETCORE_URLS: "http://+:80"
+    ProducerUrl: "https://producer.app.domain:443"
+- name: consumer1
+  image: "wurdum/grpc-stream-bench-consumer"
+  tag: "{{ image_tag }}"
+  published_ports:
+  - "81:80"
+  env:
+    ASPNETCORE_ENVIRONMENT: "Production"
+    ASPNETCORE_URLS: "http://+:80"
+    ProducerUrl: "https://producer.app.domain:443"
+- name: consumer2
+  image: "wurdum/grpc-stream-bench-consumer"
+  tag: "{{ image_tag }}"
+  published_ports:
+  - "82:80"
+  env:
+    ASPNETCORE_ENVIRONMENT: "Production"
+    ASPNETCORE_URLS: "http://+:80"
+    ProducerUrl: "https://producer.app.domain:443"
+- name: consumer3
+  image: "wurdum/grpc-stream-bench-consumer"
+  tag: "{{ image_tag }}"
+  published_ports:
+  - "83:80"
+  env:
+    ASPNETCORE_ENVIRONMENT: "Production"
+    ASPNETCORE_URLS: "http://+:80"
     ProducerUrl: "https://producer.app.domain:443"

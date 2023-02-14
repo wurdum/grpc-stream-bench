@@ -13,6 +13,11 @@ variable "ingressrules" {
   default = [22, 80, 443]
 }
 
+variable "consumer_count" {
+  type    = number
+  default = 1
+}
+
 variable "ec2_ami" {
   type = map(any)
   default = {

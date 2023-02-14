@@ -4,7 +4,11 @@ This repository contains code to benchmark gRPC streams in .NET. It has two dumm
 
 # Results
 
-`t3.large` instances are able to pass ~100k messages per second with the latency of 20ms in 99th percentile.
+| Producers | Consumers | Produced (messages/sec) | Latency 99th percentile |
+| --- | --- | --- | --- |
+| 1 node, 1 app, t3.large | 1 node, 1 app, t3.large | 75k | ~10ms |
+| 1 node, 1 app, t3.xlarge | 1 node, 1 app, t3.xlarge | 75k | ~5ms |
+| 1 node, 1 app, t3.xlarge | 1 node, 4 apps, t3.xlarge |  |  |
 
 # How to run
 
