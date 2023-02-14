@@ -722,7 +722,7 @@
         {
           "datasource": "prometheus",
           "editorMode": "code",
-          "expr": "sum by (role)(increase(process_runtime_dotnet_monitor_lock_contention_count{role=~\"$role\"}[$__interval]))",
+          "expr": "sum by (role)(rate(process_runtime_dotnet_monitor_lock_contention_count{role=~\"$role\"}[$__rate_interval]))",
           "interval": "$frequency",
           "legendFormat": "{{role}}",
           "range": true,
@@ -1119,12 +1119,10 @@
         "current": {
           "selected": true,
           "text": [
-            "consumer0",
-            "producer"
+            "All"
           ],
           "value": [
-            "consumer0",
-            "producer"
+            "$__all"
           ]
         },
         "datasource": {
