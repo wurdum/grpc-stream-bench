@@ -84,7 +84,7 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 12,
+        "w": 24,
         "x": 0,
         "y": 0
       },
@@ -94,7 +94,8 @@
           "calcs": [],
           "displayMode": "table",
           "placement": "right",
-          "showLegend": true
+          "showLegend": true,
+          "width": 250
         },
         "tooltip": {
           "mode": "single",
@@ -108,9 +109,9 @@
             "uid": "P1809F7CD0C75ACF3"
           },
           "editorMode": "code",
-          "expr": "histogram_quantile($percentile, sum(rate(consumer_received_message_latency_ms_bucket{role=~\"$role\"}[$__rate_interval])) by (le, role))",
+          "expr": "histogram_quantile($percentile, sum(rate(consumer_received_message_latency_ms_bucket{role=~\"$role\"}[$__rate_interval])) by (le, instance, role))",
           "interval": "$frequency",
-          "legendFormat": "{{role}}",
+          "legendFormat": "{{instance}} - {{role}}",
           "range": true,
           "refId": "A"
         },
@@ -190,9 +191,9 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 0
+        "w": 24,
+        "x": 0,
+        "y": 8
       },
       "id": 13,
       "options": {
@@ -200,7 +201,8 @@
           "calcs": [],
           "displayMode": "table",
           "placement": "right",
-          "showLegend": true
+          "showLegend": true,
+          "width": 250
         },
         "tooltip": {
           "mode": "single",
@@ -214,9 +216,9 @@
             "uid": "P1809F7CD0C75ACF3"
           },
           "editorMode": "code",
-          "expr": "sum by(role)(rate(consumer_received_messages_total{role=~\"$role\"}[$__rate_interval]))",
+          "expr": "sum by(instance, role)(rate(consumer_received_messages_total{role=~\"$role\"}[$__rate_interval]))",
           "interval": "$frequency",
-          "legendFormat": "{{role}}",
+          "legendFormat": "{{instance}} - {{role}}",
           "range": true,
           "refId": "A"
         },
@@ -242,7 +244,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 8
+        "y": 16
       },
       "id": 4,
       "title": ".NET Runtime",
@@ -310,7 +312,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 9
+        "y": 17
       },
       "id": 2,
       "options": {
@@ -388,8 +390,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -405,7 +406,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 17
+        "y": 25
       },
       "id": 5,
       "options": {
@@ -483,8 +484,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -500,7 +500,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 25
+        "y": 33
       },
       "id": 14,
       "options": {
@@ -578,8 +578,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -595,7 +594,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 33
+        "y": 41
       },
       "id": 6,
       "options": {
@@ -683,8 +682,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -700,7 +698,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 41
+        "y": 49
       },
       "id": 7,
       "options": {
@@ -778,8 +776,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -795,7 +792,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 49
+        "y": 57
       },
       "id": 8,
       "options": {
@@ -873,8 +870,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -890,7 +886,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 57
+        "y": 65
       },
       "id": 9,
       "options": {
@@ -968,8 +964,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -985,7 +980,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 65
+        "y": 73
       },
       "id": 15,
       "options": {
@@ -1061,8 +1056,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1078,7 +1072,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 65
+        "y": 73
       },
       "id": 16,
       "options": {
@@ -1202,7 +1196,7 @@
     ]
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {},

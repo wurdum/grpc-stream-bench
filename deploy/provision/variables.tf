@@ -15,7 +15,7 @@ variable "ingressrules" {
 
 variable "consumer_count" {
   type    = number
-  default = 1
+  default = 4
 }
 
 variable "ec2_ami" {

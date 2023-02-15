@@ -62,7 +62,7 @@ resource "aws_instance" "consumer" {
 
 resource "aws_instance" "producer" {
   ami           = data.aws_ami.ami.id
-  instance_type = "t3.xlarge"
+  instance_type = "c6i.2xlarge"
   key_name      = var.ec2_ssh_key_name
 
   subnet_id                   = aws_subnet.subnet.id

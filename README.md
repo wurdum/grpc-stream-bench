@@ -8,7 +8,10 @@ This repository contains code to benchmark gRPC streams in .NET. It has two dumm
 | --- | --- | --- | --- |
 | 1 node, 1 app, t3.large | 1 node, 1 app, t3.large | 75k | ~10ms |
 | 1 node, 1 app, t3.xlarge | 1 node, 1 app, t3.xlarge | 75k | ~5ms |
-| 1 node, 1 app, t3.xlarge | 1 node, 4 apps, t3.xlarge |  |  |
+| 1 node, 1 app, t3.xlarge | 1 node, 4 apps, t3.xlarge | 200k | ~25ms |
+| 1 node, 1 app, t3.xlarge | 1 node, 10 apps, t3.xlarge | 220k | ~65ms |
+| 1 node, 1 app, t3.xlarge | 4 nodes, 40 apps, t3.xlarge | 200k | ~65ms |
+| 1 node, 1 app, c6i.2xlarge | 4 nodes, 40 apps, t3.xlarge | 490k | ~25ms |
 
 # How to run
 
