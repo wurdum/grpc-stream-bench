@@ -13,6 +13,8 @@ This repository contains code to benchmark gRPC streams in .NET. It has two dumm
 | 1 node, 1 app, t3.xlarge | 4 nodes, 40 apps, t3.xlarge | 200k | ~65ms |
 | 1 node, 1 app, c6i.2xlarge | 4 nodes, 40 apps, t3.xlarge | 490k | ~25ms |
 
+Number of messages received by the consumers can be calculated as `produced/number of consumers`.
+
 # How to run
 
 * Install [Drone CLI](https://docs.drone.io/quickstart/cli/)
